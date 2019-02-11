@@ -4,7 +4,7 @@ import jwt from 'express-jwt';
 import { expressJwtSecret } from 'jwks-rsa';
 import jwtAuthz from 'express-jwt-authz';
 import { fromExpress } from 'webtask-tools';
-import config from './config';
+import config from '../config';
 
 const app = express();
 
