@@ -4,14 +4,23 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@emotion/core": "^10.0.7",
+    "@emotion/styled": "^10.0.7",
+    "auth0-js": "^9.10.0",
     "cors": "2.8.5",
     "express": "4.16.4",
     "express-jwt": "5.3.1",
     "express-jwt-authz": "1.0.0",
     "gatsby": "^2.0.118",
+    "gatsby-plugin-typography": "^2.2.7",
     "jwks-rsa": "1.3.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "react-typography": "^0.16.18",
+    "redux": "^4.0.1",
+    "redux-react-hook": "^3.1.0",
+    "typography": "^0.16.18",
+    "typography-theme-wordpress-2015": "^0.16.18",
     "webtask-tools": "3.4.0"
   },
   "scripts": {
