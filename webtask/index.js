@@ -4,12 +4,12 @@ import jwt from 'express-jwt';
 import { expressJwtSecret } from 'jwks-rsa';
 import jwtAuthz from 'express-jwt-authz';
 import { fromExpress } from 'webtask-tools';
-import config from '../config';
+import { AUTH0_CONFIG } from '../config';
 
 const app = express();
 
-if (!config.AUTH0_DOMAIN || !config.AUTH0_AUDIENCE) {
-  throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your config file'
+if (!AUTH0_CONFIG.domain || !AUTH0_CONFIG.audience) {
+  throw 'Make sure you have AUTH0_CONFIG.domain, and AUTH0_CONFIG.audience in your config file'
 }
 
 app.use(cors());
@@ -20,12 +20,12 @@ app.use(jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+    jwksUri: `https://${AUTH0_CONFIG.domain}/.well-known/jwks.json`
   }),
 
   // Validate the audience and the issuer.
-  audience: config.AUTH0_AUDIENCE,
-  issuer: `https://${config.AUTH0_DOMAIN}/`,
+  audience: AUTH0_CONFIG.audience,
+  issuer: `https://${AUTH0_CONFIG.domain}/`,
   algorithms: ['RS256']
 }));
 

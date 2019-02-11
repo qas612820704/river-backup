@@ -1,6 +1,6 @@
-export default {
-  AUTH0_CLIENT_ID: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-  AUTH0_CLIENT_SECRET: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-  AUTH0_DOMAIN: 'xxx.auth0.com',
-  AUTH0_AUDIENCE: 'https://domain.xxx',
+export  const AUTH0_CONFIG = {
+  clientId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  clientSecret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  domain: 'xxx.auth0.com',
+  audience: 'https://domain.xxx',
 };
