@@ -1,4 +1,20 @@
 import React from 'react';
-import auth0 from 'auth0-js';
+import { navigate } from 'gatsby';
+import { useIsLogin } from '../hooks';
+import Layout from '../layout';
+import Loading from '../components/Loading';
 
-export default () => <div>Hello World!</div>
+export default function Index() {
+  const isLogin = useIsLogin();
+
+  if (!isLogin) {
+    navigate('/login');
+    return <Loading />;
+  };
+
+  return (
+    <Layout>
+      Hello World
+    </Layout>
+  )
+}

@@ -3022,7 +3022,7 @@ debug@^3.1.0, debug@^3.2.5:
   dependencies:
     ms "^2.1.1"
 
-debug@^4.0.1, debug@^4.1.0, debug@~4.1.0:
+debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@~4.1.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
   integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
@@ -8153,6 +8153,11 @@ redux-react-hook@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/redux-react-hook/-/redux-react-hook-3.1.0.tgz#cafc0fb4b2bf8512791ee2efb965cb9babca69d7"
   integrity sha512-uey8v7ZXFcWon9zthM01HPNdg6C3Twn1WctCb7XRFO47iGbQnX/NUpcKMKpTKNC9DC+Dx6IjfYiOwI+11zHeaw==
+
+redux-thunk@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+  integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
 redux@^4.0.0, redux@^4.0.1:
   version "4.0.1"

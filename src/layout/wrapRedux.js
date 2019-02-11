@@ -10,7 +10,7 @@ export default ({ element }) => {
   //  - it will be called only once in browser, when React mounts
   const store = createStore()
   return (
-    <StoreContext.Provider store={store}>
+    <StoreContext.Provider value={store}>
     { element }
     </StoreContext.Provider>
   );
