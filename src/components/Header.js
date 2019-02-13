@@ -39,8 +39,6 @@ export default function Header() {
   const isLogin = useIsLogin();
   const profile = useUserProfile();
 
-  console.log(isLogin, profile);
-
   return isLogin && profile && (
     <HeadRoom style={{ background: 'white', boxShadow: '0 0 8px #888888' }}>
       <Room>

@@ -1,5 +1,3 @@
-import { updateProfile } from './user';
-
 const UPDATE_AUTH = 'UPDATE_AUTH';
 const CLEAR_AUTH = 'CLEAR_AUTH';
 const SET_AUTH_MESSAGE = 'SET_AUTH_MESSAGE';
