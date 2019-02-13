@@ -1,7 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { useMappedState, useDispatch } from 'redux-react-hook';
-import { authentication, setAccessTokenToAxios, registerIfNeeded } from '../redux/actions';
-
+import {
+  authentication, setAccessTokenToAxios, registerIfNeeded,
+  updateProfile
+} from '../redux/actions';
 export function useIsLogin() {
   const mapIsLoginState = useCallback(
     state => state.auth.expiresAt > Date.now(),
@@ -20,6 +22,15 @@ export function useAuthMessage() {
   return useMappedState(mapAuthMessageState);
 }
 
+export function useUserProfile() {
+  const mapUserProfileState = useCallback(
+    state => state.user,
+    []
+  );
+
+  return useMappedState(mapUserProfileState);
+}
+
 export function useDispatchAuthentication() {
   const dispatch = useDispatch();
 
@@ -28,7 +39,10 @@ export function useDispatchAuthentication() {
 
     dispatch(setAccessTokenToAxios(auth.accessToken));
 
-    const updatedAuth = await dispatch(registerIfNeeded(auth));
-    return updatedAuth;
+    const profile = await dispatch(registerIfNeeded(auth));
+
+    dispatch(updateProfile(profile));
+
+    return auth;
   }, []);
 }

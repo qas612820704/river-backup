@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import Header from '../components/Header';
 import { rhythm } from './typography';
 import './theme.css';
 
@@ -10,8 +11,11 @@ const Wrapper = styled.div`
 
 export default function Layout({ children }) {
   return (
-    <Wrapper>
-    { children }
-    </Wrapper>
+    <div>
+      <Header/>
+      <Wrapper>
+      { children }
+      </Wrapper>
+    </div>
   );
 }

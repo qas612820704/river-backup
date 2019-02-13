@@ -14,10 +14,10 @@ const user = (state = initialState, action) => {
   }
 }
 
-export function updateProfile(auth) {
+export function updateProfile(profile) {
   return {
     type: UPDATE_PROFILE,
-    payload: auth.idTokenPayload,
+    payload: profile,
   }
 }
 

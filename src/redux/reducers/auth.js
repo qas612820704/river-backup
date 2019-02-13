@@ -1,3 +1,5 @@
+import { updateProfile } from './user';
+
 const UPDATE_AUTH = 'UPDATE_AUTH';
 const CLEAR_AUTH = 'CLEAR_AUTH';
 const SET_AUTH_MESSAGE = 'SET_AUTH_MESSAGE';
@@ -115,8 +117,10 @@ export function registerIfNeeded(auth) {
       setAuthInfoMessage('register if needed...')
     );
 
+    let profile;
     try {
-      const response = await apis.register(auth);
+      profile = await apis.register(auth);
+
     } catch (err) {
       dispatch(
         setAuthErrorMessage(`${err.name} ${err.message}`)
@@ -128,6 +132,8 @@ export function registerIfNeeded(auth) {
     dispatch(
       setAuthInfoMessage('register if needed done')
     );
+
+    return profile;
   }
 }
 
