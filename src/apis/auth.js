@@ -1,13 +1,15 @@
 import { WebAuth } from 'auth0-js';
 import { AUTH0_CONFIG } from '../../config';
+import axios from './ultis/axios';
 import * as debug from '../logger';
 
 const auth0 = new WebAuth({
   domain: AUTH0_CONFIG.domain,
   clientID: AUTH0_CONFIG.clientId,
   redirectUri:  AUTH0_CONFIG.redirectUri,
+  audience: AUTH0_CONFIG.audience,
   responseType: 'token id_token',
-  scope: 'openid profile offline_access',
+  scope: 'openid email profile offline_access',
 });
 
 export class InvalidTokenError extends Error {
@@ -46,6 +48,16 @@ export async function authentication() {
       return resolve(auth);
     })
   });
+}
+
+export async function register(auth) {
+  const response = await axios.post('/register', auth.idTokenPayload);
+
+  const { data } = response;
+
+  debug.api('register', data);
+
+  return data;
 }
 
 export default auth0;

@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useMappedState, useDispatch } from 'redux-react-hook';
-import { authentication } from '../redux/actions';
+import { authentication, setAccessTokenToAxios, registerIfNeeded } from '../redux/actions';
 
 export function useIsLogin() {
   const mapIsLoginState = useCallback(
@@ -23,7 +23,12 @@ export function useAuthMessage() {
 export function useDispatchAuthentication() {
   const dispatch = useDispatch();
 
-  return useMemo(() => {
-    return dispatch(authentication());
+  return useMemo(async () => {
+    const auth = await dispatch(authentication());
+
+    dispatch(setAccessTokenToAxios(auth.accessToken));
+
+    const updatedAuth = await dispatch(registerIfNeeded(auth));
+    return updatedAuth;
   }, []);
 }

@@ -60,26 +60,74 @@ export function setAuthErrorMessage(message) {
 }
 
 export function setAuthInfoMessage(message) {
-  return setAuthInfoMessage('info', message);
+  return setAuthMessage('info', message);
 }
 
 export function authentication() {
   return async (dispatch, getState, apis) => {
     try {
-      const { accessToken, idToken, expiresIn } = await apis.authentication();
+      dispatch(
+        setAuthInfoMessage('parsing authentication callback...')
+      );
 
-      return dispatch(
+      const auth = await apis.authentication();
+      const { accessToken, idToken, expiresIn } = auth;
+
+      dispatch(
         updateAuth({
           accessToken,
           idToken,
           expiresAt: Date.now() + expiresIn,
         })
+        );
+
+      dispatch(
+        setAuthInfoMessage('parsing authentication callback done')
       );
+
+      return auth;
     } catch (err) {
-      return dispatch(
+      dispatch(
         setAuthErrorMessage(`${err.name} — ${err.message}`)
       );
+      throw err;
     }
+  }
+}
+
+export function setAccessTokenToAxios(accessToken) {
+  return async (dispatch, getState, apis) => {
+    dispatch(
+      setAuthInfoMessage('set accessToken to axios...')
+    );
+
+    apis.axiosSetHeaders({ 'Authorization': `Bearer ${accessToken}`});
+
+    dispatch(
+        setAuthInfoMessage('set accessToken to axios done')
+    );
+  }
+}
+
+export function registerIfNeeded(auth) {
+  return async (dispatch, getState, apis) => {
+    dispatch(
+      setAuthInfoMessage('register if needed...')
+    );
+
+    try {
+      const response = await apis.register(auth);
+    } catch (err) {
+      dispatch(
+        setAuthErrorMessage(`${err.name} ${err.message}`)
+      );
+
+      throw err;
+    }
+
+    dispatch(
+      setAuthInfoMessage('register if needed done')
+    );
   }
 }
 

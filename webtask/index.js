@@ -2,9 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import jwt from 'express-jwt';
 import { expressJwtSecret } from 'jwks-rsa';
-import jwtAuthz from 'express-jwt-authz';
 import { fromExpress } from 'webtask-tools';
+import connectToDatabase from './database';
+import User from './models/User';
 import { AUTH0_CONFIG } from '../config';
+
+connectToDatabase(() => {
+  console.log('Database connected');
+});
 
 const app = express();
 
@@ -13,6 +18,7 @@ if (!AUTH0_CONFIG.domain || !AUTH0_CONFIG.audience) {
 }
 
 app.use(cors());
+app.use(express.json());
 
 app.use(jwt({
   // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
@@ -41,5 +47,18 @@ function handleUnauthorizedError(err, req, res, next) {
 app.get('/', (req, res) => {
   res.json({ message: 'Hello World!'});
 });
+
+app.post('/register', async (req, res) => {
+  const { sub: id } = req.body;
+
+  let user = await User.findOne({ id }, '-_id -__v');
+  if (!user) {
+    console.log(`${user} not found: create one`);
+    const { email, name, picture } = req.body;
+    user = await new User({ id, email, name, picture }).save();
+  }
+
+  res.json(user);
+})
 
 module.exports = fromExpress(app);

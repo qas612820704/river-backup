@@ -2,24 +2,25 @@ import React from 'react';
 import { navigate, Link } from 'gatsby';
 import Loading from '../components/Loading';
 import {
-  useIsLogin, useAuthMessage,
+  useAuthMessage,
   useDispatchAuthentication
 } from '../hooks';
 
-import auth from '../apis/auth';
-
-
 export default function Callback({ location }) {
+
   useDispatchAuthentication()
-    .then(action => {
+    .then(auth => {
       navigate('/');
+    })
+    .catch(() => {
+      navigate('/login');
     });
 
   const { info, error } = useAuthMessage();
 
   return (
     <Loading>
-      { info && <Loading.Info>{info}</Loading.Info>}
+      { !error && info && <Loading.Info>{info}</Loading.Info>}
       { error && (
         <Loading.Error>
         { error } <Link to='/login'>back to log in!</Link>
