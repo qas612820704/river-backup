@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: "qas612820704.github.io/river",
+  pathPrefix: '/river',
   plugins: [
     {
       resolve: `gatsby-plugin-typography`,

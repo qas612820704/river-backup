@@ -27,7 +27,7 @@
     "start:client": "gatsby develop",
     "start:webtask": "cd webtask; npm start",
     "build": "gatsby build",
-    "build:prefix": "npm run build --prefix-paths",
+    "build:prefix": "gatsby build --prefix-paths",
     "deploy": "rimraf .cache public && npm run build:prefix && gh-pages -d public"
   },
   "devDependencies": {
