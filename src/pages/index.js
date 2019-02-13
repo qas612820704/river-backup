@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
 import { useIsLogin } from '../hooks';
 import Layout from '../layout';
@@ -8,7 +8,10 @@ export default function Index() {
   const isLogin = useIsLogin();
 
   if (!isLogin) {
-    navigate('/login');
+    useEffect(() => {
+      navigate('/login');
+    });
+
     return <Loading />;
   };
 
