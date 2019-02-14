@@ -44,8 +44,8 @@ function handleUnauthorizedError(err, req, res, next) {
   }
 }
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Hello World!'});
+app.get('/ping', (req, res) => {
+  res.json({ message: 'pong' });
 });
 
 app.post('/register', async (req, res) => {
