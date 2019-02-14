@@ -3,8 +3,12 @@ import cors from 'cors';
 import jwt from 'express-jwt';
 import { expressJwtSecret } from 'jwks-rsa';
 import { fromExpress } from 'webtask-tools';
+
+import booksRouter from './routers/books';
+
 import connectToDatabase from './database';
 import User from './models/User';
+
 import { AUTH0_CONFIG } from '../config';
 
 connectToDatabase(() => {
@@ -59,6 +63,8 @@ app.post('/register', async (req, res) => {
   }
 
   res.json(user);
-})
+});
+
+app.use('/books', booksRouter);
 
 module.exports = fromExpress(app);

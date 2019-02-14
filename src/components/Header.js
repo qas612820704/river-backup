@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import HeadRoom from 'react-headroom';
+import { Link } from 'gatsby';
 import { rhythm } from '../layout/typography';
 import { useIsLogin, useUserProfile }from '../hooks';
 
@@ -28,10 +29,18 @@ const BedRoom = styled.div`
 
 const Balcony = styled.div`
   display: flex;
-  align-items:center;
+
+  a, span {
+    padding-left: ${rhythm(0.5)};
+  }
 
   span {
-    padding-left: ${rhythm(0.5)};
+    display: flex;
+    align-items:center;
+
+    img {
+      margin-right: ${rhythm(0.25)};
+    }
   }
 `;
 
@@ -46,8 +55,11 @@ export default function Header() {
           <h2>River</h2>
         </BedRoom>
         <Balcony>
-          <img src={profile.picture} alt="O"/>
-          <span> Hi, {profile.name}</span>
+          <Link to="/books">Books</Link>
+          <span>
+            <img src={profile.picture} alt="O"/>
+            Hi, {profile.name}
+          </span>
         </Balcony>
       </Room>
     </HeadRoom>

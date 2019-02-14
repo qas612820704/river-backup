@@ -11,6 +11,7 @@
     "debug": "^4.1.1",
     "gatsby": "^2.0.118",
     "gatsby-plugin-typography": "^2.2.7",
+    "lodash": "^4.17.11",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-headroom": "^2.2.4",
